@@ -1,8 +1,24 @@
 const express = require('express')
+// const morgan = require('morgan')
+const mongoose = require('mongoose')
+
+try {
+    mongoose.connect('mongodb://127.0.0.1:27018/Epita', {
+        authSource: "admin",
+        user: "root",
+        pass: "example",
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    console.log('Connected to DB !')
+} catch (error) {
+    console.log("Error DB connection: ", error)
+}
 
 //To get the data in body
 let bodyParser = require('body-parser')
 const todoRouter = require('./routes/todoRoute')
+const messageRouter = require('./routes/messageRoute')
 
 
 const app = express()
@@ -17,7 +33,7 @@ app.use(express.json())
 //We can use this as well insted of app.use(express.json())
 
 /*app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}));*/
+app.use(bodyParser.urlencoded({extended:true}))npm rund;*/
 
 app.get('/', function (request, response){
     return response.status(200).send('It works')
@@ -43,6 +59,8 @@ app.get('/test', (request, response) =>{
 })
 
 app.use('/todos',todoRouter)
+app.use('/messages',messageRouter)
+
 
 const PORT = 4500
 
