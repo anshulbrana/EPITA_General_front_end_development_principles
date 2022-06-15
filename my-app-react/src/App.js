@@ -8,6 +8,8 @@ import {
 } from "react-router-dom"
 import Chuck from "./pages/Chuck"
 
+import "./styles/main.css"
+
 const App = () => {
     return <>
         <h1>App</h1>
@@ -15,9 +17,9 @@ const App = () => {
         <Button>Add</Button> */}
 
         <BrowserRouter>
-        <div>
-            <Link to = "/">Home</Link> <br/>
-            <Link to = "/button">Button</Link><br/>
+        <div id ="nav">
+            <Link to = "/">Home</Link>
+            <Link to = "/button">Button</Link>
             <Link to = "/chuck">Chuck</Link>
 
 
