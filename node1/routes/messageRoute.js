@@ -25,4 +25,25 @@ Router.post('/', async (request, response) => {
     return response.status(200).json(messageObj)
 })
 
+Router.put('/:messageId', async (request, response) => {
+    const {name} = request.body.message
+    const {messageId} = request.params
+
+    const message = await messageModel.findByIdAndUpdate(messageId, {
+        name: name
+    },{
+        new: true
+    })
+
+    return response.status(200).json(message)
+})
+
+
+Router.delete('/:messageId', async (request, response) => {
+    const {messageId} = request.params
+
+    await messageModel.findOneAndDelete({_id: messageId})
+    return response.status(200).json({"msg" : "Message sucessfully deleted"})
+})
+
 module.exports = Router
