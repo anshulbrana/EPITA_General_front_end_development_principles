@@ -10,8 +10,6 @@ import {
 } from "react-router-dom"
 import Api from './pages/Api'
 
-import "./styles/main.css"
-
 
 function App() {
   return (<>
