@@ -1,6 +1,6 @@
 const express = require('express')
-// const morgan = require('morgan')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 try {
     mongoose.connect('mongodb://127.0.0.1:27018/Epita', {
@@ -22,6 +22,7 @@ const messageRouter = require('./routes/messageRoute')
 
 
 const app = express()
+app.use(cors())
 
 //To manage the log part only so that it can be seen and easily viewed
 const morgan = require('morgan')
@@ -37,7 +38,6 @@ app.use(bodyParser.urlencoded({extended:true}))npm rund;*/
 
 app.get('/', function (request, response){
     return response.status(200).send('It works')
-
 })
 
 app.post('/test', (request, response) =>{
@@ -54,7 +54,7 @@ app.post('/test', (request, response) =>{
 })
 
 app.get('/test', (request, response) =>{
-    return response.status(200).json('post works on /test')
+    return response.status(200).json('get works on /test')
 
 })
 
